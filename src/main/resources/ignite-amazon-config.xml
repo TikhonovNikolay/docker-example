@@ -33,14 +33,13 @@
         <property name="discoverySpi">
             <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
                 <property name="ipFinder">
-                    <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.cloud.TcpDiscoveryCloudIpFinder">
-                        <property name="provider" value="aws-ec2"/>
-                        <property name="identity" value="${AWS_ACCESS_KEY}"/>
-                        <property name="credential" value="${AWS_SECRET_KEY}"/>
-                        <property name="zones">
-                            <list>
-                                <value>us-west-1</value>
-                            </list>
+                    <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.s3.TcpDiscoveryS3IpFinder">
+                        <property name="bucketName" value="${ES_BUCKET}"/>
+                        <property name="awsCredentials">
+                            <bean class="com.amazonaws.auth.BasicAWSCredentials">
+                                <constructor-arg value="${AWS_ACCESS_KEY}"/>
+                                <constructor-arg value="${AWS_SECRET_KEY}"/>
+                            </bean>
                         </property>
                     </bean>
                 </property>
