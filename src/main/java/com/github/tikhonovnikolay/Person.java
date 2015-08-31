@@ -38,6 +38,9 @@ public class Person implements Serializable {
     @QuerySqlField
     private String firstName;
 
+    /** Last name. */
+    private String lastName;
+
     /** Salary (indexed). */
     @QuerySqlField(index = true)
     private double salary;
